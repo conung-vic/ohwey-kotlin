@@ -52,7 +52,7 @@ object TelegramClient {
         val uri = UriBuilder.fromUri(url).build(null).normalize()
         val resource = client.target(uri)
 
-        val result = resource.request(MediaType.APPLICATION_JSON).post(Entity.json(msg))
+        resource.request(MediaType.APPLICATION_JSON).post(Entity.json(msg))
         log.debug("Message sent")
     }
 }

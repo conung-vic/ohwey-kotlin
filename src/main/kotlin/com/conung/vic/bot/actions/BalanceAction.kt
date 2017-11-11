@@ -5,7 +5,6 @@ import com.conung.vic.bot.client.TelegramClient
 import com.conung.vic.bot.finance.Accounts
 import org.slf4j.LoggerFactory
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 class BalanceAction : Action {
@@ -22,8 +21,7 @@ class BalanceAction : Action {
             val log = LoggerFactory.getLogger("Balance Reader")
             log.debug("Requested balance for user $userId in chatroom $chatId")
             val msg: MutableMap<String, Any> = HashMap()
-            TimeUnit.SECONDS.sleep(3)
-            val balance = Accounts.getBalance(chatId, userId)
+            val balance = Accounts().getBalance(chatId, userId)
             msg["chat_id"] = chatId
             msg["text"] = "Your balance is $balance"
             msg["reply_to_message_id"] = msgId

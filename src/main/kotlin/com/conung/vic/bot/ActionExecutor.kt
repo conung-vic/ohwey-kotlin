@@ -1,5 +1,8 @@
 package com.conung.vic.bot
 
+import com.conung.vic.bot.finance.Accounts
+import org.slf4j.LoggerFactory
+
 object ActionExecutor {
     fun executeCommand(msg: Map<*, *>) {
         var txt = msg["text"] as String
@@ -11,6 +14,17 @@ object ActionExecutor {
     }
 
     fun countMessage(msg: Map<*, *>) {
-        println("Simple text: ${msg["text"]}")
+        val userId = Helper.getUserId(msg)
+        val chatId = Helper.getChatId(msg)
+        val len = (msg["text"] as String? )?.length ?: 0
+
+        val newThread = Thread({
+            val log = LoggerFactory.getLogger("Balance Writer")
+            log.debug("Change balance for user $userId in chatroom $chatId, delta = $len")
+            Accounts().changeBalance(chatId, userId, len)
+            log.debug("Balance for user $userId in chatroom $chatId successfully changed")
+        })
+        newThread.name = "Balance change for $chatId/$userId"
+        newThread.start()
     }
 }

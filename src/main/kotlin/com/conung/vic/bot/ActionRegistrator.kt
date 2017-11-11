@@ -152,15 +152,15 @@ object ActionRegistrator {
     }
 
     fun get(name: String): Action? {
-        if (actions.keys.contains(name)) {
-            return actions[name]
+        return if (actions.keys.contains(name)) {
+            actions[name]
         } else {
-            return actions["unknown_command"]
+            actions["unknown_command"]
         }
     }
 
     fun getNames(): List<String> {
-        var list: MutableList<String> = LinkedList()
+        val list: MutableList<String> = LinkedList()
         actions.keys.stream().filter{a -> a != "unknown_command" }.forEach { a -> list.add(a) }
         return list
     }

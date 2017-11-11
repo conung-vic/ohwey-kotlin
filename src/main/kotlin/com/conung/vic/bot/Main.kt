@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
             }
 
         }
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(2)
     }
 }
