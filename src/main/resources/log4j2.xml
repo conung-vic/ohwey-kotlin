@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>%d{DEFAULT}{UTC} %-5p [%t] %c{1} %X{request-uuid} - %replace{%m}{[\n\r\u0085\u2028\u2029]}{ }%n</pattern>
+            </PatternLayout>
+        </Console>
+        <File name="File" createOnDemand="true" fileName="bot.log">
+            <PatternLayout>
+                <pattern>%d{DEFAULT}{UTC} %-5p [%t] %c{1} %X{request-uuid} - %replace{%m}{[\n\r\u0085\u2028\u2029]}{ }%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.conung.vic.bot">
+            <AppenderRef ref="File" />
+        </Logger>
+        <Root level="all">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
+
