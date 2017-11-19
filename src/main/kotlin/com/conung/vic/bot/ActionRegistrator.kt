@@ -161,7 +161,9 @@ object ActionRegistrator {
 
     fun getNames(): List<String> {
         val list: MutableList<String> = LinkedList()
-        actions.keys.stream().filter{a -> a != "unknown_command" }.forEach { a -> list.add(a) }
+        actions.values.stream()
+                .filter{a -> a.canBeCalledByUser()}
+                .forEach { a -> list.add(a.getName()) }
         return list
     }
 }

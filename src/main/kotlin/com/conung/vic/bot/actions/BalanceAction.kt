@@ -3,6 +3,7 @@ package com.conung.vic.bot.actions
 import com.conung.vic.bot.Helper
 import com.conung.vic.bot.client.TelegramClient
 import com.conung.vic.bot.finance.Accounts
+import com.sun.org.apache.xpath.internal.operations.Bool
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -39,4 +40,6 @@ class BalanceAction : Action {
     override fun getDescription(): String {
         return "shows balance of user"
     }
+
+    override fun canBeCalledByUser(): Boolean = true
 }

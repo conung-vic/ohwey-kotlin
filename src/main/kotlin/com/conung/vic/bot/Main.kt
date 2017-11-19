@@ -8,13 +8,8 @@ fun main(args: Array<String>) {
         val msg = TelegramClient.getUpdates()
         msg.forEach { m ->
             if (m is Map<*, *>) {
-                if ((m["text"] as String).startsWith("/")) {
-                    ActionExecutor.executeCommand(m)
-                } else {
-                    ActionExecutor.countMessage(m)
-                }
+                ActionExecutor.parseMessage(m)
             }
-
         }
         TimeUnit.SECONDS.sleep(2)
     }

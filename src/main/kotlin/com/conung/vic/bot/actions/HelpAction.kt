@@ -26,11 +26,9 @@ class HelpAction: Action {
         TelegramClient.sendMessage(msg)
     }
 
-    override fun getName(): String {
-        return HELP
-    }
+    override fun getName(): String = HELP
 
-    override fun getDescription(): String {
-        return "Shows list of command"
-    }
+    override fun getDescription(): String = "Shows list of command"
+
+    override fun canBeCalledByUser(): Boolean = true
 }

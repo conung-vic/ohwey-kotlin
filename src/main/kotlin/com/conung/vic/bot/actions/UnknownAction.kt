@@ -19,11 +19,9 @@ class UnknownAction : Action {
         TelegramClient.sendMessage(msg)
     }
 
-    override fun getName(): String {
-        return "unknown_command"
-    }
+    override fun getName(): String = "unknown_command"
 
-    override fun getDescription(): String {
-        return ""
-    }
+    override fun getDescription(): String = ""
+
+    override fun canBeCalledByUser(): Boolean = false
 }
