@@ -18,12 +18,7 @@ fun main(args: Array<String>) = runBlocking {
                     launch(CommonPool) {
                         saveCommand(m as Map<String, Any>)
                     }
-
-                    if ((m["text"] as String).startsWith("/")) {
-                        ActionExecutor.executeCommand(m)
-                    } else {
-                        ActionExecutor.countMessage(m)
-                    }
+                    ActionExecutor.parseMessage(m);
                 }
 
             }

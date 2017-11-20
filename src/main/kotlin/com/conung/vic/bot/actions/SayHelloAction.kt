@@ -10,7 +10,7 @@ class SayHelloAction: Action {
         val newbie = Thread({
 
         })
-        newbie.name = "New memner with id ${command["id"]}"
+        newbie.name = "New member with id ${command["id"]}"
         newbie.start()
     }
 
