@@ -1,5 +1,9 @@
 package com.conung.vic.bot.client.beans
 
+import com.conung.vic.bot.client.beans.games.Game
+import com.conung.vic.bot.client.beans.payments.Invoice
+import com.conung.vic.bot.client.beans.payments.SuccessfulPayment
+import com.conung.vic.bot.client.beans.stickers.Sticker
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Message (

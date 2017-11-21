@@ -1,5 +1,6 @@
 package com.conung.vic.bot.client.beans.inline
 
+import com.conung.vic.bot.client.beans.Location
 import com.conung.vic.bot.client.beans.User
 import com.fasterxml.jackson.annotation.JsonProperty
 
