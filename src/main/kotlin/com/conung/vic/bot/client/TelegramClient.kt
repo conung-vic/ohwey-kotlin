@@ -3,6 +3,8 @@ package com.conung.vic.bot.client
 import com.conung.vic.bot.Config
 import com.conung.vic.bot.Config.API
 import com.conung.vic.bot.Config.BOT_TOKEN
+import com.conung.vic.bot.client.beans.TelegramResponce
+import com.conung.vic.bot.client.beans.Update
 import org.slf4j.LoggerFactory
 import java.util.*
 import javax.ws.rs.client.Entity
@@ -16,34 +18,21 @@ object TelegramClient {
     private val baseApi = (Config[API] as String) + Config[BOT_TOKEN]
     private var offset = 0
 
-    fun getUpdates():List<*> {
+    fun getUpdates():List<Update> {
         val url =  baseApi + "/getUpdates?offset=$offset"
         log.debug("API request: address = $url")
         val uri = UriBuilder.fromUri(url).build(null).normalize()
         val resource = client.target(uri)
 
-        val result = resource.request(MediaType.APPLICATION_JSON).get()
-        val list = LinkedList<Any>()
-
-        if (result.hasEntity()) {
-            val mapGeneric = GenericType.forInstance(HashMap<String, Any>())
-            val res = result.readEntity(mapGeneric)
-            if (res is HashMap<*, *>) {
-                val updates = res["result"]
-                if (res["ok"] as Boolean && updates is List<*>) {
-                    updates.forEach { update ->
-                        if (update is Map<*, *>) {
-                            offset = update["update_id"] as Int + 1
-                            val msg = update["message"]
-                            if (msg != null) {
-                                list.add(msg)
-                            }
-                        }
-                    }
-                }
+        val result = resource.request(MediaType.APPLICATION_JSON).get(TelegramResponce::class.java)
+        return if (result.ok) {
+            result.result.forEach {
+                update -> offset = update.updateId+1
             }
+            result.result
+        } else {
+            LinkedList()
         }
-        return list
     }
 
     fun sendMessage(msg: Map<*, *>) {

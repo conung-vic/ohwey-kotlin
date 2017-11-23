@@ -1,17 +1,19 @@
 package com.conung.vic.bot.actions
 
+import com.conung.vic.bot.client.beans.Message
+import com.conung.vic.bot.client.beans.User
 import org.slf4j.LoggerFactory
+import java.util.*
 
 class SayHelloAction: Action {
     val log = LoggerFactory.getLogger(SayHelloAction::class.java)
 
-    override fun execute(command: Map<*, *>) {
+    override fun execute(command: Message) {
         log.debug(command.toString())
-        val newbie = Thread({
-
-        })
-        newbie.name = "New member with id ${command["id"]}"
-        newbie.start()
+        val newbies: List<User> = command.newChatMembers ?: LinkedList()
+        newbies.forEach {
+            newbie -> log.debug("New member with id ${newbie.id}")
+        }
     }
 
     override fun getName(): String = "SayHello"

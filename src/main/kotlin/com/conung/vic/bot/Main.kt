@@ -1,7 +1,9 @@
 package com.conung.vic.bot
 
 import com.conung.vic.bot.client.TelegramClient
+import com.conung.vic.bot.client.beans.Update
 import com.conung.vic.bot.db.DBClient
+import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
@@ -12,15 +14,12 @@ import java.util.concurrent.TimeUnit
 fun main(args: Array<String>) = runBlocking {
     val mainJob = launch(CommonPool) {
         while (true) {
-            val msg = TelegramClient.getUpdates()
-            msg.forEach { m ->
-                if (m is Map<*, *>) {
-                    launch(CommonPool) {
-                        saveCommand(m as Map<String, Any>)
-                    }
-                    ActionExecutor.parseMessage(m);
+            val msgList = TelegramClient.getUpdates()
+            msgList.forEach { update ->
+                launch(CommonPool) {
+                    saveCommand(update)
                 }
-
+                ActionExecutor.parseMessage(update)
             }
             TimeUnit.SECONDS.sleep(2)
         }
@@ -29,8 +28,10 @@ fun main(args: Array<String>) = runBlocking {
     mainJob.join()
 }
 
-fun saveCommand(cmd: Map<String, Any>) {
-    val docMsg = Document(cmd as MutableMap<String, Any>?)
+fun saveCommand(cmd: Update) {
+    val om = ObjectMapper()
+    val string = om.writeValueAsString(cmd)
+    val docMsg = Document.parse(string)
     val messages = DBClient.getDatabase().getCollection("messages")
     messages.insertOne(docMsg)
 }

@@ -1,9 +1,8 @@
 package com.conung.vic.bot.actions
 
-import com.conung.vic.bot.Helper
 import com.conung.vic.bot.client.TelegramClient
+import com.conung.vic.bot.client.beans.Message
 import com.conung.vic.bot.finance.Accounts
-import com.sun.org.apache.xpath.internal.operations.Bool
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -12,11 +11,11 @@ class BalanceAction : Action {
     private val log = LoggerFactory.getLogger(BalanceAction::class.java)
     private val BALANCE = "balance"
 
-    override fun execute(command: Map<*, *>) {
+    override fun execute(command: Message) {
         log.debug("Command $BALANCE executed")
-        val chatId = Helper.getChatId(command)
-        val userId = Helper.getUserId(command)
-        val msgId = command["message_id"] as Int? ?: -1
+        val chatId = command.chat.id
+        val userId = command.from?.id ?: 0
+        val msgId = command.messageId
 
         val newThread = Thread({
             val log = LoggerFactory.getLogger("Balance Reader")
