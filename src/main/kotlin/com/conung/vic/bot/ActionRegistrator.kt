@@ -136,9 +136,8 @@ object ActionRegistrator {
         return classes
     }
 
-    private fun filterClass(cls: Class<*>): Boolean {
-        return !cls.isInterface && !Modifier.isAbstract(cls.modifiers) && !cls.name.contains("$")
-    }
+    private fun filterClass(cls: Class<*>): Boolean =
+            !cls.isInterface && !Modifier.isAbstract(cls.modifiers) && !cls.name.contains("$")
 
     private fun registerActions(classList: List<Class<*>>) {
         classList.stream()

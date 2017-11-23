@@ -9,10 +9,10 @@ import java.util.*
 
 class BalanceAction : Action {
     private val log = LoggerFactory.getLogger(BalanceAction::class.java)
-    private val BALANCE = "balance"
+    private val balance = "balance"
 
     override fun execute(command: Message) {
-        log.debug("Command $BALANCE executed")
+        log.debug("Command $balance executed")
         val chatId = command.chat.id
         val userId = command.from?.id ?: 0
         val msgId = command.messageId
@@ -32,13 +32,9 @@ class BalanceAction : Action {
         newThread.start()
     }
 
-    override fun getName(): String {
-        return BALANCE
-    }
+    override fun getName(): String = balance
 
-    override fun getDescription(): String {
-        return "shows balance of user"
-    }
+    override fun getDescription(): String = "shows balance of user"
 
     override fun canBeCalledByUser(): Boolean = true
 }

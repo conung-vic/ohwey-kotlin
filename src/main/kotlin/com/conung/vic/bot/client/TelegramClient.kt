@@ -8,7 +8,6 @@ import com.conung.vic.bot.client.beans.Update
 import org.slf4j.LoggerFactory
 import java.util.*
 import javax.ws.rs.client.Entity
-import javax.ws.rs.core.GenericType
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.UriBuilder
 

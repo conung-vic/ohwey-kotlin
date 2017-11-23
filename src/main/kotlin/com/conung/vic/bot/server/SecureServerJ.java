@@ -9,14 +9,12 @@ import java.io.IOException;
 import java.security.*;
 import java.security.cert.CertificateException;
 
-public class SecureServerJ implements Runnable {
-    private String ksPath;
-    private char[] keystorePwd;
-    private char[] keyPwd;
-    private boolean requiredClientAuth;
+class SecureServerJ implements Runnable {
+    private final String ksPath;
+    private final char[] keystorePwd;
+    private final char[] keyPwd;
+    private final boolean requiredClientAuth;
     private SSLServerSocket serverSocket;
-    private SSLSocket connectedSocket;
-    private SSLSession session;
 
     public SecureServerJ() {
         ksPath = "ksPath";
@@ -29,8 +27,8 @@ public class SecureServerJ implements Runnable {
         try {
             this.getServerSocket();
             while (true) {
-                this.connectedSocket = (SSLSocket) serverSocket.accept();
-                this.session = connectedSocket.getSession();
+                SSLSocket connectedSocket = (SSLSocket) serverSocket.accept();
+                SSLSession session = connectedSocket.getSession();
 
             }
         } catch (IOException e) {
@@ -38,7 +36,7 @@ public class SecureServerJ implements Runnable {
         }
     }
 
-    public void getServerSocket() {
+    private void getServerSocket() {
         try {
             Security.addProvider(new Provider());
             KeyStore keystore = KeyStore.getInstance("JKS");

@@ -25,15 +25,13 @@ object DBClient {
         log.debug("DB connection initialized")
     }
 
-    fun getMongoClient(): MongoClient {
+    /*fun getMongoClient(): MongoClient {
         return this.mongoClient
-    }
+    }*/
 
-    fun getDatabase(): MongoDatabase {
-        return this.database
-    }
+    fun getDatabase(): MongoDatabase = this.database
 
-    fun shutdown() {
+    /*fun shutdown() {
         mongoClient.close()
-    }
+    }*/
 }

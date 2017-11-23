@@ -11,9 +11,9 @@ object Config: Properties() {
     private val log = LoggerFactory.getLogger(Config::class.java)
     private val FILE_LOCATION_ENV_VAR = "OHWEY_CONFIG_FILE"
     val DB_CONNECTION_STRING = "bot-connection-string"
-    val DB_HOST = "bot-host-name"
-    val DB_NAME = "bot-db-name"
-    val DB_PORT = "bot-db-port"
+    // val DB_HOST = "bot-host-name"
+    // val DB_NAME = "bot-db-name"
+    // val DB_PORT = "bot-db-port"
     val BOT_TOKEN = "bot-token"
     val API = "bot-api"
 

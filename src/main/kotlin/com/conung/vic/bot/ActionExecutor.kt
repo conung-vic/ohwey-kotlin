@@ -2,10 +2,8 @@ package com.conung.vic.bot
 
 import com.conung.vic.bot.client.beans.Message
 import com.conung.vic.bot.client.beans.Update
-import com.conung.vic.bot.client.beans.User
 import com.conung.vic.bot.finance.Accounts
 import org.slf4j.LoggerFactory
-import java.util.*
 
 object ActionExecutor {
     fun parseMessage(msg: Update) {

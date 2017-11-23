@@ -10,10 +10,10 @@ import java.util.*
 
 class HelpAction: Action {
     private val log = LoggerFactory.getLogger(HelpAction::class.java)
-    private val HELP = "help"
+    private val help = "help"
 
     override fun execute(command: Message) {
-        log.debug("Command $HELP started")
+        log.debug("Command $help started")
         val names = ActionRegistrator.getNames()
         val help: MutableList<String> = LinkedList()
         names.forEach{name -> help.add(name + " : " + ActionRegistrator.get(name)?.getDescription())}
@@ -26,7 +26,7 @@ class HelpAction: Action {
         TelegramClient.sendMessage(msg)
     }
 
-    override fun getName(): String = HELP
+    override fun getName(): String = help
 
     override fun getDescription(): String = "Shows list of command"
 
