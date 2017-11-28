@@ -21,7 +21,7 @@ fun main(args: Array<String>) = runBlocking {
                 }
                 ActionExecutor.parseMessage(update)
             }
-            TimeUnit.SECONDS.sleep(2)
+            TimeUnit.SECONDS.sleep(5)
         }
     }
 

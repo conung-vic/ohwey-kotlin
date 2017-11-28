@@ -36,6 +36,15 @@ object TelegramClient {
 
     fun sendMessage(msg: Map<*, *>) {
         val url = baseApi + "/sendMessage"
+        send(msg, url)
+    }
+
+    fun sendDocument(msg: Map<*, *>) {
+        val url = baseApi + "/sendDocument"
+        send(msg, url)
+    }
+
+    private fun send(msg: Map<*, *>, url: String) {
         log.debug("API request: address = $url")
         val uri = UriBuilder.fromUri(url).build(null).normalize()
         val resource = client.target(uri)
