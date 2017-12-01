@@ -17,6 +17,11 @@ object Config: Properties() {
     val BOT_TOKEN = "bot-token"
     val API = "bot-api"
 
+    val KS_PATH = "bot-keycert-path"
+    val KS_PWD = "bot-keycert-store-pwd"
+    val KS_KEY_PWD = "bot-keycert-key-pwd"
+    val KS_SEC_PORT = "bot-port"
+
     init {
         log.info("Start of configuration initialization")
 
@@ -27,7 +32,7 @@ object Config: Properties() {
         if (fileLocation != null) {
             file = File(fileLocation)
             if (file.exists() && file.isFile) {
-                log.info("Using external configuratin file: $fileLocation")
+                log.info("Using external configuration file: $fileLocation")
                 inputStream = FileInputStream(file)
             } else {
                 val msg = "Env var $FILE_LOCATION_ENV_VAR points to wrong location: $fileLocation"
@@ -35,7 +40,7 @@ object Config: Properties() {
                 throw InvalidConfigException(msg)
             }
         } else {
-            log.info("Env var $FILE_LOCATION_ENV_VAR is not set. Usong default config")
+            log.info("Env var $FILE_LOCATION_ENV_VAR is not set. Using default config")
             inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream("bot_config.ini")
         }
 

@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.1.60</kotlin.version>
+        <kotlin.version>1.2.0</kotlin.version>
         <junit.version>4.12</junit.version>
         <jetty.version>9.4.7.v20170914</jetty.version>
         <jersey.version>2.26</jersey.version>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>0.18</version>
+            <version>0.19.3</version>
         </dependency>
 
         <dependency>
@@ -134,7 +134,8 @@
                         <oltpdVersion>${project.version}</oltpdVersion>
                     </manifestEntries>
                     <manifest>
-                        <mainClass>com.conung.vic.bot.MainKt</mainClass>
+                        <!--<mainClass>com.conung.vic.bot.MainKt</mainClass>-->
+                        <mainClass>com.conung.vic.bot.server.ServerKt</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>

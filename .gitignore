@@ -4,3 +4,4 @@ target
 bot.log
 real_config.ini
 *.keystore
+keys
