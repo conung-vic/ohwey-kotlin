@@ -92,6 +92,12 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.5.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>2.9.0</version>
+        </dependency>
     </dependencies>
 
 
@@ -135,7 +141,7 @@
                     </manifestEntries>
                     <manifest>
                         <!--<mainClass>com.conung.vic.bot.MainKt</mainClass>-->
-                        <mainClass>com.conung.vic.bot.server.ServerKt</mainClass>
+                        <mainClass>com.conung.vic.bot.server.SimpleServerKt</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
